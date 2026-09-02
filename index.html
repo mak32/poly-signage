@@ -155,39 +155,44 @@
       line-height: 1.45;
     }
 
-    .event-list {
+    /* Meeting Room Guide Slide */
+
+    .guide-slide {
+      padding: 12vh 3vw 6vh 3vw;
+      align-items: flex-start;
+    }
+
+    .guide-container {
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 2vh;
-      width: 78vw;
-    }
-
-    .event {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 2vw;
       align-items: center;
-      background: var(--panel);
-      border-left: 6px solid var(--teal);
-      padding: 1.8vw 2vw;
+      justify-content: flex-start;
+    }
+
+    .guide-title {
+      width: 100%;
+      margin-bottom: 1.5vh;
+      padding-left: 2vw;
+    }
+
+    .guide-title h2 {
+      margin: 0;
+      font-size: clamp(30px, 2.3vw, 48px);
+      color: white;
+    }
+
+    .guide-image {
+      display: block;
+      max-width: 94vw;
+      max-height: 72vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      background: white;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
       border-radius: 10px;
-    }
-
-    .event-date {
-      font-size: clamp(22px, 1.8vw, 38px);
-      font-weight: bold;
-      color: var(--teal);
-    }
-
-    .event-title {
-      font-size: clamp(26px, 2vw, 40px);
-      font-weight: 700;
-    }
-
-    .event-desc {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: clamp(18px, 1.2vw, 28px);
     }
 
     .footer {
@@ -232,7 +237,8 @@
 
   <div class="slides">
 
-    <section class="slide active">
+    <!-- Slide 1: Welcome -->
+    <section class="slide active" data-duration="15000">
       <div class="content">
         <div class="eyebrow">Welcome</div>
         <h1>Welcome to MDA Space</h1>
@@ -242,7 +248,8 @@
       </div>
     </section>
 
-    <section class="slide">
+    <!-- Slide 2: Company Announcements -->
+    <section class="slide" data-duration="15000">
       <div class="content">
         <div class="eyebrow">Company Announcements</div>
 
@@ -271,41 +278,26 @@
       </div>
     </section>
 
-    <section class="slide">
-      <div class="content">
-        <div class="eyebrow">Upcoming Events</div>
+    <!-- Slide 3: Teams Meeting Room Guide -->
+    <section class="slide guide-slide" data-duration="45000">
+      <div class="guide-container">
 
-        <div class="event-list">
-
-          <div class="event">
-            <div class="event-date">SEP 10</div>
-            <div>
-              <div class="event-title">Company Town Hall</div>
-              <div class="event-desc">Main meeting room • 10:00 AM</div>
-            </div>
-          </div>
-
-          <div class="event">
-            <div class="event-date">SEP 18</div>
-            <div>
-              <div class="event-title">Employee Engagement Event</div>
-              <div class="event-desc">Details available on the employee portal</div>
-            </div>
-          </div>
-
-          <div class="event">
-            <div class="event-date">SEP 25</div>
-            <div>
-              <div class="event-title">Technology Update</div>
-              <div class="event-desc">Latest workplace and collaboration updates</div>
-            </div>
-          </div>
-
+        <div class="guide-title">
+          <div class="eyebrow">Meeting Room Help</div>
+          <h2>Microsoft Teams Room Quick Guide</h2>
         </div>
+
+        <img
+          src="tap-meeting-guide.png"
+          class="guide-image"
+          alt="Microsoft Teams Room Guide"
+        >
+
       </div>
     </section>
 
-    <section class="slide">
+    <!-- Slide 4: IT Communications -->
+    <section class="slide" data-duration="15000">
       <div class="content">
         <div class="eyebrow">IT & Employee Communications</div>
         <h1>Stay Secure. Stay Connected.</h1>
@@ -333,7 +325,7 @@
     const dots = document.querySelectorAll('.dot');
 
     let currentSlide = 0;
-    const rotationTime = 15000;
+    let slideTimer;
 
     function showSlide(index) {
       slides.forEach((slide, i) => {
@@ -343,12 +335,20 @@
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
       });
+
+      const duration = parseInt(
+        slides[index].getAttribute('data-duration')
+      ) || 15000;
+
+      clearTimeout(slideTimer);
+
+      slideTimer = setTimeout(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }, duration);
     }
 
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }, rotationTime);
+    showSlide(0);
   </script>
 
 </body>
