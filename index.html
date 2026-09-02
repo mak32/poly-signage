@@ -3,12 +3,12 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
-  />
+  >
 
   <title>MDA Space Digital Signage</title>
 
@@ -42,7 +42,9 @@
     }
 
 
-    /* NORMAL MDA BACKGROUND */
+    /* ========================================
+       NORMAL MDA BACKGROUND
+       ======================================== */
 
     .background {
       position: absolute;
@@ -71,6 +73,7 @@
       z-index: 0;
     }
 
+
     .background::after {
       content: "";
       position: absolute;
@@ -88,7 +91,9 @@
     }
 
 
-    /* HEADER */
+    /* ========================================
+       HEADER
+       ======================================== */
 
     .header {
       position: absolute;
@@ -104,6 +109,7 @@
       justify-content: space-between;
     }
 
+
     .logo {
       width: 16vw;
       max-width: 320px;
@@ -111,21 +117,27 @@
       height: auto;
     }
 
+
     .accent-line {
       width: 9vw;
       height: 5px;
+
       background: var(--teal);
+
       border-radius: 5px;
     }
 
 
-    /* SLIDE SYSTEM */
+    /* ========================================
+       SLIDE SYSTEM
+       ======================================== */
 
     .slides {
       position: absolute;
       inset: 0;
       z-index: 2;
     }
+
 
     .slide {
       position: absolute;
@@ -151,6 +163,7 @@
       pointer-events: none;
     }
 
+
     .slide.active {
       opacity: 1;
       transform: scale(1);
@@ -158,38 +171,76 @@
     }
 
 
-    /* NORMAL SLIDE CONTENT */
+    /* ========================================
+       NORMAL SLIDE CONTENT
+       ======================================== */
 
     .content {
       max-width: 80vw;
     }
 
+
     .eyebrow {
       color: var(--teal);
+
       text-transform: uppercase;
+
       letter-spacing: 0.22em;
-      font-size: clamp(18px, 1.4vw, 30px);
+
+      font-size:
+        clamp(
+          18px,
+          1.4vw,
+          30px
+        );
+
       font-weight: 700;
+
       margin-bottom: 2vh;
     }
 
+
     h1 {
-      font-size: clamp(54px, 5.3vw, 110px);
+      font-size:
+        clamp(
+          54px,
+          5.3vw,
+          110px
+        );
+
       line-height: 0.98;
-      margin: 0 0 2.5vh 0;
+
+      margin:
+        0
+        0
+        2.5vh
+        0;
+
       font-weight: 700;
+
       max-width: 1200px;
     }
 
+
     .subtitle {
-      font-size: clamp(24px, 2vw, 42px);
+      font-size:
+        clamp(
+          24px,
+          2vw,
+          42px
+        );
+
       line-height: 1.4;
+
       color: var(--muted);
+
       max-width: 1100px;
     }
 
 
-    /* FULL-SCREEN IMAGE SLIDES */
+    /* ========================================
+       FULL SCREEN IMAGE SLIDES
+       ======================================== */
 
     .image-slide {
       padding: 0;
@@ -204,6 +255,7 @@
 
       background: #000000;
     }
+
 
     .fullscreen-image {
       position: absolute;
@@ -224,7 +276,147 @@
     }
 
 
-    /* FOOTER */
+    /* ========================================
+       GLOBAL LIVE CLOCK
+       VISIBLE ON EVERY SLIDE
+       ======================================== */
+
+    .global-clock {
+      position: absolute;
+
+      left: 2vw;
+      bottom: 2vh;
+
+      z-index: 100;
+
+      display: flex;
+      align-items: center;
+
+      min-width: 250px;
+
+      padding:
+        10px
+        16px;
+
+      background:
+        rgba(0,0,0,0.72);
+
+      border-radius: 8px;
+
+      border:
+        1px solid
+        rgba(0,169,144,0.35);
+    }
+
+
+    /* Clock circle */
+
+    .clock-icon {
+      width: 40px;
+      height: 40px;
+
+      border:
+        3px solid
+        #ffffff;
+
+      border-radius: 50%;
+
+      margin-right: 13px;
+
+      position: relative;
+
+      flex-shrink: 0;
+    }
+
+
+    /* Hour hand */
+
+    .clock-icon::before {
+      content: "";
+
+      position: absolute;
+
+      width: 3px;
+      height: 11px;
+
+      background: white;
+
+      left: 16px;
+      top: 7px;
+
+      transform-origin:
+        bottom center;
+
+      transform:
+        rotate(0deg);
+    }
+
+
+    /* Minute hand */
+
+    .clock-icon::after {
+      content: "";
+
+      position: absolute;
+
+      width: 10px;
+      height: 3px;
+
+      background: white;
+
+      left: 17px;
+      top: 18px;
+
+      transform-origin:
+        left center;
+
+      transform:
+        rotate(35deg);
+    }
+
+
+    .clock-text {
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+    }
+
+
+    .live-time {
+      color: #ffffff;
+
+      font-size:
+        clamp(
+          21px,
+          1.45vw,
+          31px
+        );
+
+      font-weight: 700;
+
+      line-height: 1;
+    }
+
+
+    .live-date {
+      color: #ffffff;
+
+      font-size:
+        clamp(
+          13px,
+          0.85vw,
+          18px
+        );
+
+      margin-top: 5px;
+    }
+
+
+    /* ========================================
+       FOOTER
+       ======================================== */
 
     .footer {
       position: absolute;
@@ -236,32 +428,55 @@
       z-index: 10;
 
       display: flex;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
 
       color: #8fa1a8;
 
-      font-size: clamp(14px, 0.9vw, 20px);
+      font-size:
+        clamp(
+          14px,
+          0.9vw,
+          20px
+        );
     }
+
 
     .dots {
       display: flex;
+
       gap: 9px;
+
       align-items: center;
     }
+
 
     .dot {
       width: 10px;
       height: 10px;
-      background: rgba(255,255,255,0.25);
+
+      background:
+        rgba(255,255,255,0.25);
+
       border-radius: 50%;
     }
+
 
     .dot.active {
       background: var(--teal);
     }
 
 
-    /* HIDE NORMAL SIGNAGE FRAME ON FULL-SCREEN IMAGE SLIDES */
+    /* ========================================
+       FULL SCREEN IMAGE MODE
+
+       Hide the regular MDA header,
+       footer and background.
+
+       IMPORTANT:
+       The global clock is NOT hidden.
+       ======================================== */
 
     body.image-active .header,
     body.image-active .footer,
@@ -277,8 +492,16 @@
 <body>
 
 
+  <!-- ========================================
+       NORMAL BACKGROUND
+       ======================================== -->
+
   <div class="background"></div>
 
+
+  <!-- ========================================
+       NORMAL HEADER
+       ======================================== -->
 
   <div class="header">
 
@@ -293,10 +516,18 @@
   </div>
 
 
+  <!-- ========================================
+       SLIDES
+       ======================================== -->
+
   <div class="slides">
 
 
-    <!-- SLIDE 1: WELCOME -->
+    <!-- ======================================
+         SLIDE 1
+         WELCOME
+         15 SECONDS
+         ====================================== -->
 
     <section
       class="slide active"
@@ -306,15 +537,24 @@
       <div class="content">
 
         <div class="eyebrow">
+
           Welcome
+
         </div>
 
+
         <h1>
+
           Welcome to MDA Space
+
         </h1>
 
+
         <div class="subtitle">
-          Building the space between proven and possible.
+
+          Building the space between
+          proven and possible.
+
         </div>
 
       </div>
@@ -322,7 +562,12 @@
     </section>
 
 
-    <!-- SLIDE 2: EMPLOYEE WI-FI GUIDE -->
+
+    <!-- ======================================
+         SLIDE 2
+         EMPLOYEE WI-FI GUIDE
+         30 SECONDS
+         ====================================== -->
 
     <section
       class="slide image-slide"
@@ -330,7 +575,7 @@
     >
 
       <img
-        src="./employee-wifi.png?v=1"
+        src="./employee-wifi.png?v=3"
         class="fullscreen-image"
         alt="MDA Employee Wi-Fi Guide"
       >
@@ -338,7 +583,12 @@
     </section>
 
 
-    <!-- SLIDE 3: TEAMS ROOM GUIDE -->
+
+    <!-- ======================================
+         SLIDE 3
+         TEAMS ROOM GUIDE
+         45 SECONDS
+         ====================================== -->
 
     <section
       class="slide image-slide"
@@ -346,7 +596,7 @@
     >
 
       <img
-        src="./tap-meeting-guide.png?v=5"
+        src="./tap-meeting-guide.png?v=7"
         class="fullscreen-image"
         alt="Microsoft Teams Room Guide"
       >
@@ -354,7 +604,12 @@
     </section>
 
 
-    <!-- SLIDE 4: IT COMMUNICATIONS -->
+
+    <!-- ======================================
+         SLIDE 4
+         IT COMMUNICATIONS
+         15 SECONDS
+         ====================================== -->
 
     <section
       class="slide"
@@ -363,21 +618,31 @@
 
       <div class="content">
 
+
         <div class="eyebrow">
+
           IT & Employee Communications
+
         </div>
 
+
         <h1>
+
           Stay Secure.<br>
           Stay Connected.
+
         </h1>
 
+
         <div class="subtitle">
+
           Keep your device updated,
           report suspicious emails,
           and contact the IT Help Desk
           for assistance.
+
         </div>
+
 
       </div>
 
@@ -387,40 +652,116 @@
   </div>
 
 
-  <div class="footer">
+  <!-- ========================================
+       GLOBAL LIVE CLOCK
+       THIS SITS ABOVE ALL SLIDES
+       ======================================== -->
 
-    <div>
-      MDA Space • Internal Communications
+  <div class="global-clock">
+
+
+    <div class="clock-icon"></div>
+
+
+    <div class="clock-text">
+
+
+      <div
+        id="liveTime"
+        class="live-time"
+      >
+
+        --:-- --
+
+      </div>
+
+
+      <div
+        id="liveDate"
+        class="live-date"
+      >
+
+        Loading...
+
+      </div>
+
+
     </div>
 
-    <div class="dots">
-
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-
-    </div>
 
   </div>
 
 
+  <!-- ========================================
+       NORMAL FOOTER
+       ======================================== -->
+
+  <div class="footer">
+
+
+    <div>
+
+      MDA Space • Internal Communications
+
+    </div>
+
+
+    <div class="dots">
+
+      <div class="dot active"></div>
+
+      <div class="dot"></div>
+
+      <div class="dot"></div>
+
+      <div class="dot"></div>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+       ======================================== -->
+
   <script>
 
+
+    /* ========================================
+       SLIDE ROTATION
+       ======================================== */
+
+
     var slides =
-      document.querySelectorAll('.slide');
+      document.querySelectorAll(
+        '.slide'
+      );
+
 
     var dots =
-      document.querySelectorAll('.dot');
+      document.querySelectorAll(
+        '.dot'
+      );
+
 
     var currentSlide = 0;
+
 
     var slideTimer = null;
 
 
+
     function showSlide(index) {
 
+
       var i;
+
+
+
+      /* Remove active class
+         from every slide */
 
 
       for (
@@ -429,11 +770,19 @@
         i++
       ) {
 
+
         slides[i]
           .classList
-          .remove('active');
+          .remove(
+            'active'
+          );
+
 
       }
+
+
+
+      /* Remove active dot */
 
 
       for (
@@ -442,87 +791,169 @@
         i++
       ) {
 
+
         dots[i]
           .classList
-          .remove('active');
+          .remove(
+            'active'
+          );
+
 
       }
+
+
+
+      /* Activate slide */
 
 
       slides[index]
         .classList
-        .add('active');
+        .add(
+          'active'
+        );
 
 
-      if (dots[index]) {
 
-        dots[index]
-          .classList
-          .add('active');
-
-      }
+      /* Activate navigation dot */
 
 
       if (
+        dots[index]
+      ) {
+
+
+        dots[index]
+          .classList
+          .add(
+            'active'
+          );
+
+
+      }
+
+
+
+      /* Determine whether
+         this is a full-screen
+         image slide */
+
+
+      if (
+
         slides[index]
           .classList
-          .contains('image-slide')
+          .contains(
+            'image-slide'
+          )
+
       ) {
+
 
         document.body
           .classList
-          .add('image-active');
+          .add(
+            'image-active'
+          );
+
 
       }
+
 
       else {
 
+
         document.body
           .classList
-          .remove('image-active');
+          .remove(
+            'image-active'
+          );
+
 
       }
 
 
+
+      /* Get slide duration */
+
+
       var duration =
+
         parseInt(
+
           slides[index]
             .getAttribute(
               'data-duration'
             ),
+
           10
+
         );
 
 
-      if (!duration) {
-        duration = 15000;
+
+      if (
+        !duration
+      ) {
+
+
+        duration =
+          15000;
+
+
       }
 
 
-      if (slideTimer) {
-        clearTimeout(slideTimer);
+
+      /* Clear previous timer */
+
+
+      if (
+        slideTimer
+      ) {
+
+
+        clearTimeout(
+          slideTimer
+        );
+
+
       }
+
+
+
+      /* Schedule next slide */
 
 
       slideTimer =
+
         setTimeout(
 
           function () {
 
+
             currentSlide++;
 
+
+
             if (
+
               currentSlide >=
               slides.length
+
             ) {
+
 
               currentSlide = 0;
 
+
             }
+
+
 
             showSlide(
               currentSlide
             );
+
 
           },
 
@@ -530,15 +961,257 @@
 
         );
 
+
     }
 
 
+
+    /* ========================================
+       LIVE CLOCK
+       ======================================== */
+
+
+    function updateClock() {
+
+
+      var now =
+        new Date();
+
+
+
+      /* TIME */
+
+
+      var hours =
+        now.getHours();
+
+
+      var minutes =
+        now.getMinutes();
+
+
+      var ampm =
+        hours >= 12
+        ? "PM"
+        : "AM";
+
+
+
+      hours =
+        hours % 12;
+
+
+
+      if (
+        hours === 0
+      ) {
+
+
+        hours = 12;
+
+
+      }
+
+
+
+      if (
+        minutes < 10
+      ) {
+
+
+        minutes =
+          "0" +
+          minutes;
+
+
+      }
+
+
+
+      var timeText =
+
+        hours +
+
+        ":" +
+
+        minutes +
+
+        " " +
+
+        ampm;
+
+
+
+      /* DATE */
+
+
+      var weekdays = [
+
+        "Sunday",
+
+        "Monday",
+
+        "Tuesday",
+
+        "Wednesday",
+
+        "Thursday",
+
+        "Friday",
+
+        "Saturday"
+
+      ];
+
+
+
+      var months = [
+
+        "January",
+
+        "February",
+
+        "March",
+
+        "April",
+
+        "May",
+
+        "June",
+
+        "July",
+
+        "August",
+
+        "September",
+
+        "October",
+
+        "November",
+
+        "December"
+
+      ];
+
+
+
+      var dateText =
+
+        weekdays[
+          now.getDay()
+        ]
+
+        +
+
+        ", "
+
+        +
+
+        months[
+          now.getMonth()
+        ]
+
+        +
+
+        " "
+
+        +
+
+        now.getDate()
+
+        +
+
+        ", "
+
+        +
+
+        now.getFullYear();
+
+
+
+      /* UPDATE SCREEN */
+
+
+      var timeElement =
+
+        document.getElementById(
+          "liveTime"
+        );
+
+
+      var dateElement =
+
+        document.getElementById(
+          "liveDate"
+        );
+
+
+
+      if (
+        timeElement
+      ) {
+
+
+        timeElement.innerHTML =
+          timeText;
+
+
+      }
+
+
+
+      if (
+        dateElement
+      ) {
+
+
+        dateElement.innerHTML =
+          dateText;
+
+
+      }
+
+
+    }
+
+
+
+    /* ========================================
+       START SIGNAGE
+       ======================================== */
+
+
     window.onload =
+
       function () {
 
-        showSlide(0);
+
+        /* Start clock */
+
+
+        updateClock();
+
+
+        setInterval(
+
+          updateClock,
+
+          1000
+
+        );
+
+
+
+        /* Start slides */
+
+
+        showSlide(
+          0
+        );
+
 
       };
+
 
   </script>
 
