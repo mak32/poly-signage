@@ -17,7 +17,6 @@
     :root {
       --teal: #00A990;
       --bg: #071014;
-      --panel: rgba(255,255,255,0.06);
       --text: #ffffff;
       --muted: #cfd8dc;
     }
@@ -43,9 +42,7 @@
     }
 
 
-    /* =========================================
-       NORMAL MDA BACKGROUND
-       ========================================= */
+    /* NORMAL MDA BACKGROUND */
 
     .background {
       position: absolute;
@@ -91,9 +88,7 @@
     }
 
 
-    /* =========================================
-       HEADER
-       ========================================= */
+    /* HEADER */
 
     .header {
       position: absolute;
@@ -119,16 +114,12 @@
     .accent-line {
       width: 9vw;
       height: 5px;
-
       background: var(--teal);
-
       border-radius: 5px;
     }
 
 
-    /* =========================================
-       SLIDE SYSTEM
-       ========================================= */
+    /* SLIDE SYSTEM */
 
     .slides {
       position: absolute;
@@ -167,9 +158,7 @@
     }
 
 
-    /* =========================================
-       NORMAL SLIDE CONTENT
-       ========================================= */
+    /* NORMAL SLIDE CONTENT */
 
     .content {
       max-width: 80vw;
@@ -177,139 +166,46 @@
 
     .eyebrow {
       color: var(--teal);
-
       text-transform: uppercase;
-
       letter-spacing: 0.22em;
-
-      font-size:
-        clamp(
-          18px,
-          1.4vw,
-          30px
-        );
-
+      font-size: clamp(18px, 1.4vw, 30px);
       font-weight: 700;
-
       margin-bottom: 2vh;
     }
 
     h1 {
-      font-size:
-        clamp(
-          54px,
-          5.3vw,
-          110px
-        );
-
+      font-size: clamp(54px, 5.3vw, 110px);
       line-height: 0.98;
-
-      margin:
-        0
-        0
-        2.5vh
-        0;
-
+      margin: 0 0 2.5vh 0;
       font-weight: 700;
-
       max-width: 1200px;
     }
 
     .subtitle {
-      font-size:
-        clamp(
-          24px,
-          2vw,
-          42px
-        );
-
+      font-size: clamp(24px, 2vw, 42px);
       line-height: 1.4;
-
       color: var(--muted);
-
       max-width: 1100px;
     }
 
 
-    /* =========================================
-       ANNOUNCEMENT CARDS
-       ========================================= */
+    /* FULL-SCREEN IMAGE SLIDES */
 
-    .card-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 2vw;
-
-      width: 82vw;
-    }
-
-    .card {
-      background: var(--panel);
-
-      border:
-        1px solid
-        rgba(255,255,255,0.09);
-
-      border-top:
-        5px solid
-        var(--teal);
-
-      padding: 2.2vw;
-
-      border-radius: 14px;
-
-      min-height: 250px;
-
-      backdrop-filter: blur(6px);
-    }
-
-    .card h2 {
-      margin-top: 0;
-
-      font-size:
-        clamp(
-          26px,
-          2vw,
-          42px
-        );
-    }
-
-    .card p {
-      color: var(--muted);
-
-      font-size:
-        clamp(
-          20px,
-          1.35vw,
-          30px
-        );
-
-      line-height: 1.45;
-    }
-
-
-    /* =========================================
-       FULL SCREEN MEETING GUIDE
-       ========================================= */
-
-    .guide-slide {
+    .image-slide {
       padding: 0;
       margin: 0;
 
       width: 100vw;
       height: 100vh;
 
-      background: #ffffff;
-
       overflow: hidden;
 
       z-index: 20;
+
+      background: #000000;
     }
 
-    .guide-fullscreen {
+    .fullscreen-image {
       position: absolute;
 
       top: 0;
@@ -319,9 +215,7 @@
       height: 100vh;
 
       object-fit: cover;
-
-      object-position:
-        center center;
+      object-position: center center;
 
       display: block;
 
@@ -330,9 +224,7 @@
     }
 
 
-    /* =========================================
-       FOOTER
-       ========================================= */
+    /* FOOTER */
 
     .footer {
       position: absolute;
@@ -344,35 +236,23 @@
       z-index: 10;
 
       display: flex;
-
-      justify-content:
-        space-between;
+      justify-content: space-between;
 
       color: #8fa1a8;
 
-      font-size:
-        clamp(
-          14px,
-          0.9vw,
-          20px
-        );
+      font-size: clamp(14px, 0.9vw, 20px);
     }
 
     .dots {
       display: flex;
-
       gap: 9px;
-
       align-items: center;
     }
 
     .dot {
       width: 10px;
       height: 10px;
-
-      background:
-        rgba(255,255,255,0.25);
-
+      background: rgba(255,255,255,0.25);
       border-radius: 50%;
     }
 
@@ -381,14 +261,11 @@
     }
 
 
-    /* =========================================
-       WHEN GUIDE SLIDE IS ACTIVE
-       Hide everything except the guide
-       ========================================= */
+    /* HIDE NORMAL SIGNAGE FRAME ON FULL-SCREEN IMAGE SLIDES */
 
-    body.guide-active .header,
-    body.guide-active .footer,
-    body.guide-active .background {
+    body.image-active .header,
+    body.image-active .footer,
+    body.image-active .background {
       display: none;
     }
 
@@ -400,16 +277,8 @@
 <body>
 
 
-  <!-- =======================================
-       BACKGROUND
-       ======================================= -->
-
   <div class="background"></div>
 
-
-  <!-- =======================================
-       HEADER
-       ======================================= -->
 
   <div class="header">
 
@@ -424,18 +293,10 @@
   </div>
 
 
-  <!-- =======================================
-       SLIDES
-       ======================================= -->
-
   <div class="slides">
 
 
-    <!-- =====================================
-         SLIDE 1
-         WELCOME
-         15 SECONDS
-         ===================================== -->
+    <!-- SLIDE 1: WELCOME -->
 
     <section
       class="slide active"
@@ -453,10 +314,7 @@
         </h1>
 
         <div class="subtitle">
-
-          Building the space between
-          proven and possible.
-
+          Building the space between proven and possible.
         </div>
 
       </div>
@@ -464,104 +322,39 @@
     </section>
 
 
-
-    <!-- =====================================
-         SLIDE 2
-         COMPANY ANNOUNCEMENTS
-         15 SECONDS
-         ===================================== -->
+    <!-- SLIDE 2: EMPLOYEE WI-FI GUIDE -->
 
     <section
-      class="slide"
-      data-duration="15000"
+      class="slide image-slide"
+      data-duration="30000"
     >
 
-      <div class="content">
-
-        <div class="eyebrow">
-          Company Announcements
-        </div>
-
-
-        <div class="card-grid">
-
-
-          <div class="card">
-
-            <h2>
-              Employee Update
-            </h2>
-
-            <p>
-              Add an important employee
-              announcement here.
-            </p>
-
-          </div>
-
-
-          <div class="card">
-
-            <h2>
-              Operations
-            </h2>
-
-            <p>
-              Share facility, operations
-              or business updates here.
-            </p>
-
-          </div>
-
-
-          <div class="card">
-
-            <h2>
-              Spotlight
-            </h2>
-
-            <p>
-              Highlight a team achievement,
-              project milestone or recognition.
-            </p>
-
-          </div>
-
-
-        </div>
-
-      </div>
+      <img
+        src="./employee-wifi.png?v=1"
+        class="fullscreen-image"
+        alt="MDA Employee Wi-Fi Guide"
+      >
 
     </section>
 
 
-
-    <!-- =====================================
-         SLIDE 3
-         FULL SCREEN TEAMS ROOM GUIDE
-         45 SECONDS
-         ===================================== -->
+    <!-- SLIDE 3: TEAMS ROOM GUIDE -->
 
     <section
-      class="slide guide-slide"
+      class="slide image-slide"
       data-duration="45000"
     >
 
       <img
         src="./tap-meeting-guide.png?v=5"
-        class="guide-fullscreen"
+        class="fullscreen-image"
         alt="Microsoft Teams Room Guide"
       >
 
     </section>
 
 
-
-    <!-- =====================================
-         SLIDE 4
-         IT COMMUNICATIONS
-         15 SECONDS
-         ===================================== -->
+    <!-- SLIDE 4: IT COMMUNICATIONS -->
 
     <section
       class="slide"
@@ -580,12 +373,10 @@
         </h1>
 
         <div class="subtitle">
-
           Keep your device updated,
           report suspicious emails,
           and contact the IT Help Desk
           for assistance.
-
         </div>
 
       </div>
@@ -595,10 +386,6 @@
 
   </div>
 
-
-  <!-- =======================================
-       FOOTER
-       ======================================= -->
 
   <div class="footer">
 
@@ -618,10 +405,6 @@
   </div>
 
 
-  <!-- =======================================
-       SLIDE ROTATION
-       ======================================= -->
-
   <script>
 
     var slides =
@@ -639,8 +422,6 @@
 
       var i;
 
-
-      /* Remove active status */
 
       for (
         i = 0;
@@ -668,8 +449,6 @@
       }
 
 
-      /* Activate requested slide */
-
       slides[index]
         .classList
         .add('active');
@@ -684,18 +463,15 @@
       }
 
 
-      /* Check if this is the
-         full-screen guide */
-
       if (
         slides[index]
           .classList
-          .contains('guide-slide')
+          .contains('image-slide')
       ) {
 
         document.body
           .classList
-          .add('guide-active');
+          .add('image-active');
 
       }
 
@@ -703,12 +479,10 @@
 
         document.body
           .classList
-          .remove('guide-active');
+          .remove('image-active');
 
       }
 
-
-      /* Read slide duration */
 
       var duration =
         parseInt(
@@ -721,22 +495,14 @@
 
 
       if (!duration) {
-
         duration = 15000;
-
       }
 
-
-      /* Clear previous timer */
 
       if (slideTimer) {
-
         clearTimeout(slideTimer);
-
       }
 
-
-      /* Start next slide timer */
 
       slideTimer =
         setTimeout(
@@ -744,7 +510,6 @@
           function () {
 
             currentSlide++;
-
 
             if (
               currentSlide >=
@@ -754,7 +519,6 @@
               currentSlide = 0;
 
             }
-
 
             showSlide(
               currentSlide
@@ -768,8 +532,6 @@
 
     }
 
-
-    /* Start signage */
 
     window.onload =
       function () {
