@@ -73,7 +73,6 @@
       z-index: 0;
     }
 
-
     .background::after {
       content: "";
       position: absolute;
@@ -109,14 +108,12 @@
       justify-content: space-between;
     }
 
-
     .logo {
       width: 16vw;
       max-width: 320px;
       min-width: 180px;
       height: auto;
     }
-
 
     .accent-line {
       width: 9vw;
@@ -137,7 +134,6 @@
       inset: 0;
       z-index: 2;
     }
-
 
     .slide {
       position: absolute;
@@ -163,7 +159,6 @@
       pointer-events: none;
     }
 
-
     .slide.active {
       opacity: 1;
       transform: scale(1);
@@ -178,7 +173,6 @@
     .content {
       max-width: 80vw;
     }
-
 
     .eyebrow {
       color: var(--teal);
@@ -198,7 +192,6 @@
 
       margin-bottom: 2vh;
     }
-
 
     h1 {
       font-size:
@@ -221,7 +214,6 @@
       max-width: 1200px;
     }
 
-
     .subtitle {
       font-size:
         clamp(
@@ -239,7 +231,7 @@
 
 
     /* ========================================
-       FULL SCREEN IMAGE SLIDES
+       FULL-SCREEN IMAGE SLIDES
        ======================================== */
 
     .image-slide {
@@ -255,7 +247,6 @@
 
       background: #000000;
     }
-
 
     .fullscreen-image {
       position: absolute;
@@ -278,14 +269,14 @@
 
     /* ========================================
        GLOBAL LIVE CLOCK
-       VISIBLE ON EVERY SLIDE
+       TOP-RIGHT ON EVERY SLIDE
        ======================================== */
 
     .global-clock {
       position: absolute;
 
-      left: 2vw;
-      bottom: 2vh;
+      top: 2.5vh;
+      right: 2vw;
 
       z-index: 100;
 
@@ -306,10 +297,14 @@
       border:
         1px solid
         rgba(0,169,144,0.35);
+
+      box-shadow:
+        0 4px 18px
+        rgba(0,0,0,0.30);
     }
 
 
-    /* Clock circle */
+    /* Clock icon */
 
     .clock-icon {
       width: 40px;
@@ -411,6 +406,8 @@
         );
 
       margin-top: 5px;
+
+      white-space: nowrap;
     }
 
 
@@ -442,7 +439,6 @@
         );
     }
 
-
     .dots {
       display: flex;
 
@@ -450,7 +446,6 @@
 
       align-items: center;
     }
-
 
     .dot {
       width: 10px;
@@ -462,20 +457,18 @@
       border-radius: 50%;
     }
 
-
     .dot.active {
       background: var(--teal);
     }
 
 
     /* ========================================
-       FULL SCREEN IMAGE MODE
+       FULL-SCREEN IMAGE MODE
 
-       Hide the regular MDA header,
-       footer and background.
+       Hide normal header/footer/background
+       when an image slide is displayed.
 
-       IMPORTANT:
-       The global clock is NOT hidden.
+       Clock remains visible.
        ======================================== */
 
     body.image-active .header,
@@ -493,14 +486,14 @@
 
 
   <!-- ========================================
-       NORMAL BACKGROUND
+       BACKGROUND
        ======================================== -->
 
   <div class="background"></div>
 
 
   <!-- ========================================
-       NORMAL HEADER
+       HEADER
        ======================================== -->
 
   <div class="header">
@@ -537,18 +530,12 @@
       <div class="content">
 
         <div class="eyebrow">
-
           Welcome
-
         </div>
 
-
         <h1>
-
           Welcome to MDA Space
-
         </h1>
-
 
         <div class="subtitle">
 
@@ -575,7 +562,7 @@
     >
 
       <img
-        src="./employee-wifi.png?v=3"
+        src="./employee-wifi.png?v=4"
         class="fullscreen-image"
         alt="MDA Employee Wi-Fi Guide"
       >
@@ -596,7 +583,7 @@
     >
 
       <img
-        src="./tap-meeting-guide.png?v=7"
+        src="./tap-meeting-guide.png?v=8"
         class="fullscreen-image"
         alt="Microsoft Teams Room Guide"
       >
@@ -653,8 +640,8 @@
 
 
   <!-- ========================================
-       GLOBAL LIVE CLOCK
-       THIS SITS ABOVE ALL SLIDES
+       GLOBAL CLOCK
+       TOP-RIGHT ON EVERY SLIDE
        ======================================== -->
 
   <div class="global-clock">
@@ -693,7 +680,7 @@
 
 
   <!-- ========================================
-       NORMAL FOOTER
+       FOOTER
        ======================================== -->
 
   <div class="footer">
@@ -760,8 +747,7 @@
 
 
 
-      /* Remove active class
-         from every slide */
+      /* Remove active slide */
 
 
       for (
@@ -803,7 +789,7 @@
 
 
 
-      /* Activate slide */
+      /* Activate requested slide */
 
 
       slides[index]
@@ -814,7 +800,7 @@
 
 
 
-      /* Activate navigation dot */
+      /* Activate matching dot */
 
 
       if (
@@ -833,9 +819,7 @@
 
 
 
-      /* Determine whether
-         this is a full-screen
-         image slide */
+      /* Full-screen image mode */
 
 
       if (
@@ -921,7 +905,7 @@
 
 
 
-      /* Schedule next slide */
+      /* Move to next slide */
 
 
       slideTimer =
@@ -1129,7 +1113,7 @@
 
 
 
-      /* UPDATE SCREEN */
+      /* Update clock elements */
 
 
       var timeElement =
@@ -1186,7 +1170,7 @@
       function () {
 
 
-        /* Start clock */
+        /* Start live clock */
 
 
         updateClock();
@@ -1202,7 +1186,7 @@
 
 
 
-        /* Start slides */
+        /* Start slide rotation */
 
 
         showSlide(
