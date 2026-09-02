@@ -155,44 +155,22 @@
       line-height: 1.45;
     }
 
-    /* Meeting Room Guide Slide */
+    /* Full-screen guide slide */
 
     .guide-slide {
-      padding: 12vh 3vw 6vh 3vw;
-      align-items: flex-start;
-    }
-
-    .guide-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .guide-title {
-      width: 100%;
-      margin-bottom: 1.5vh;
-      padding-left: 2vw;
-    }
-
-    .guide-title h2 {
+      padding: 0;
       margin: 0;
-      font-size: clamp(30px, 2.3vw, 48px);
-      color: white;
+      background: #ffffff;
+      align-items: center;
+      justify-content: center;
     }
 
-    .guide-image {
-      display: block;
-      max-width: 94vw;
-      max-height: 72vh;
-      width: auto;
-      height: auto;
+    .guide-fullscreen {
+      width: 100vw;
+      height: 100vh;
       object-fit: contain;
-      background: white;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-      border-radius: 10px;
+      display: block;
+      background: #ffffff;
     }
 
     .footer {
@@ -223,6 +201,14 @@
     .dot.active {
       background: var(--teal);
     }
+
+    /* Hide normal signage chrome during guide slide */
+
+    body.guide-active .header,
+    body.guide-active .footer,
+    body.guide-active .background {
+      display: none;
+    }
   </style>
 </head>
 
@@ -237,7 +223,7 @@
 
   <div class="slides">
 
-    <!-- Slide 1: Welcome -->
+    <!-- Slide 1 -->
     <section class="slide active" data-duration="15000">
       <div class="content">
         <div class="eyebrow">Welcome</div>
@@ -248,7 +234,7 @@
       </div>
     </section>
 
-    <!-- Slide 2: Company Announcements -->
+    <!-- Slide 2 -->
     <section class="slide" data-duration="15000">
       <div class="content">
         <div class="eyebrow">Company Announcements</div>
@@ -278,25 +264,16 @@
       </div>
     </section>
 
-    <!-- Slide 3: Teams Meeting Room Guide -->
+    <!-- Slide 3: Full-screen guide -->
     <section class="slide guide-slide" data-duration="45000">
-      <div class="guide-container">
-
-        <div class="guide-title">
-          <div class="eyebrow">Meeting Room Help</div>
-          <h2>Microsoft Teams Room Quick Guide</h2>
-        </div>
-
-        <img
-          src="tap-meeting-guide.png"
-          class="guide-image"
-          alt="Microsoft Teams Room Guide"
-        >
-
-      </div>
+      <img
+        src="./tap-meeting-guide.png?v=4"
+        class="guide-fullscreen"
+        alt="Microsoft Teams Room Guide"
+      >
     </section>
 
-    <!-- Slide 4: IT Communications -->
+    <!-- Slide 4 -->
     <section class="slide" data-duration="15000">
       <div class="content">
         <div class="eyebrow">IT & Employee Communications</div>
@@ -321,34 +298,60 @@
   </div>
 
   <script>
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-
-    let currentSlide = 0;
-    let slideTimer;
+    var slides = document.querySelectorAll('.slide');
+    var dots = document.querySelectorAll('.dot');
+    var currentSlide = 0;
+    var slideTimer = null;
 
     function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
+      var i;
 
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
+      for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+      }
 
-      const duration = parseInt(
-        slides[index].getAttribute('data-duration')
-      ) || 15000;
+      for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('active');
+      }
 
-      clearTimeout(slideTimer);
+      slides[index].classList.add('active');
 
-      slideTimer = setTimeout(() => {
-        currentSlide = (currentSlide + 1) % slides.length;
+      if (dots[index]) {
+        dots[index].classList.add('active');
+      }
+
+      if (slides[index].classList.contains('guide-slide')) {
+        document.body.classList.add('guide-active');
+      } else {
+        document.body.classList.remove('guide-active');
+      }
+
+      var duration =
+        parseInt(slides[index].getAttribute('data-duration'), 10);
+
+      if (!duration) {
+        duration = 15000;
+      }
+
+      if (slideTimer) {
+        clearTimeout(slideTimer);
+      }
+
+      slideTimer = setTimeout(function () {
+        currentSlide++;
+
+        if (currentSlide >= slides.length) {
+          currentSlide = 0;
+        }
+
         showSlide(currentSlide);
+
       }, duration);
     }
 
-    showSlide(0);
+    window.onload = function () {
+      showSlide(0);
+    };
   </script>
 
 </body>
